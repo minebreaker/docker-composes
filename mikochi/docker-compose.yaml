@@ -1,14 +1,14 @@
 services:
   mikochi:
     image: zer0tonin/mikochi:latest-armv7
-    volumes:
-      - /shared/mikochi:/data
+    user: "1000:1000"
     ports:
       - 8082:8080
+    volumes:
+      - /shared/mikochi:/data
     environment:
       USERNAME: test
       PASSWORD: ${PASSWORD}
-    user: "1000:1000"
     restart: unless-stopped
     logging:
       driver: local
