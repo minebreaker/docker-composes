@@ -1,12 +1,14 @@
 services:
   gitbucket:
     image: ghcr.io/gitbucket/gitbucket:latest
-    user: "1000:1000"
+    # FIXME
+#    user: "1000:1000"
     ports:
       - 8083:8080
     volumes:
       - ./data:/gitbucket
     environment:
+#      GITBUCKET_HOST: 127.0.0.1
       GITBUCKET_HOST: 0.0.0.0
     restart: unless-stopped
     logging:
