@@ -3,7 +3,7 @@ services:
     image: stashapp/stash:latest
     user: "1000:1000"
     ports:
-      - 8084:9999
+      - 8085:9999
     environment:
       - STASH_STASH=/data/
       - STASH_GENERATED=/generated/

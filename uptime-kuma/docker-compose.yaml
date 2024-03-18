@@ -3,7 +3,7 @@ services:
     image: louislam/uptime-kuma:latest
     user: "1000:1000"
     ports:
-      - 8083:3001
+      - 8084:3001
     environment: [ ]
     volumes:
       - ./data:/app/data
