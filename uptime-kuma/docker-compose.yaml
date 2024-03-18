@@ -10,3 +10,6 @@ services:
     restart: unless-stopped
     logging:
       driver: local
+    # Allow network access for localhost
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
