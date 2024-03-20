@@ -1,0 +1,30 @@
+services:
+  sandbox-pi-server:
+    image: ghcr.io/minebreaker/sandbox-pi:0.1.0-SNAPSHOT
+    privileged: true  # must be run as root to access gpio
+    devices:
+      - /dev/gpiomem # GPIO
+      - /dev/i2c-1   # I2C
+      - /dev/serial0 # UART
+    ports:
+      - 8086:8080
+    environment:
+      SNADBOX_PI_DATABASE_HOST: sandbox-pi-db
+      SNADBOX_PI_DATABASE_PORT: "5432"
+      SNADBOX_PI_DATABASE_PASSWORD: changeme
+    restart: "no"
+    #    restart: unless-stopped
+    logging:
+      driver: local
+  sandbox-pi-db:
+    image: postgres:16
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: changeme
+      POSTGRES_DB: sandbox-pi
+    logging:
+      driver: local
